@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Liste des biens{% endblock %}
+
+{% block main %}
+    <main class="container">
+        <h1>Liste de tous les biens de la base</h1>
+        {%  for paquet2_3 in biens | batch(3) %}
+          <div class="card-group row">
+            {% for bien in paquet2_3 %}
+                <div class="card col-4" style="width: 18rem;">
+                    {%  if bien.photo %}
+                        <img class="card-img-top" src="{{  asset('images/biens/'~ bien.photo) }}" alt="Card image cap">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ bien.nomUsage }}</h5>
+                        <p class="card-text">{{ bien.descrAcces | slice(0,100) }}...</p>
+                        <p class="card-text"> </p>
+                        <p class="card-text"> ad1 {{ bien.ad1 }}</p>
+                        {%  if  bien.ad2  %}  <p class="card-text"> ad2 {{ bien.ad2 }}</p>{%  endif %}
+                        {%  if  bien.ad3  %}  <p class="card-text"> ad2 {{ bien.ad3 }}</p>{%  endif %}
+                        <p class="card-text">  {{ bien.cp }} {{ bien.ville }}</p>
+                        <a href="{{ path('app_bien_biendetail',{nobien: bien.bnId}) }}" class="btn btn-primary">Voir le projet</a>
+                        <a href="{{ path('app_bien_modif_bien',{id: bien.bnId}) }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('app_bien_del_bien',{id: bien.bnId}) }}" class="btn btn-danger">Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+    </main>
+{% endblock %}
