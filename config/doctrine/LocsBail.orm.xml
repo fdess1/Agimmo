@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="'App\Entity'\LocsBail" table="locs_bail">
+    <indexes>
+      <index name="fk_lc_bail" columns="lc_bl_id"/>
+      <index name="fk_cl_bail" columns="lc_cl_id"/>
+    </indexes>
+    <id name="lcId" type="smallint" column="lc_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="lcCl" target-entity="Client" fetch="LAZY">
+      <join-columns>
+        <join-column name="lc_cl_id" referenced-column-name="cl_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="lcBl" target-entity="Bail" fetch="LAZY">
+      <join-columns>
+        <join-column name="lc_bl_id" referenced-column-name="bl_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

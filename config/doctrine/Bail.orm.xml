@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="'App\Entity'\Bail" table="bail">
+    <indexes>
+      <index name="fk_bien" columns="bl_id_bien"/>
+    </indexes>
+    <id name="blId" type="smallint" column="bl_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="blMeuble" type="boolean" column="bl_meuble" nullable="true"/>
+    <field name="blType" type="string" column="bl_type" length="5" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">type de bail, 3/6/9, 3 ans autorenouvelable...)</option>
+      </options>
+    </field>
+    <field name="dsigneLe" type="date" column="dsigne_le" nullable="true">
+      <options>
+        <option name="comment">date de signature du bail</option>
+      </options>
+    </field>
+    <field name="dpriseEffet" type="date" column="dprise_effet" nullable="true">
+      <options>
+        <option name="comment">date de prise d'effet du bail</option>
+      </options>
+    </field>
+    <field name="dureem" type="integer" column="dureeM" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">duree du bail (en mois)</option>
+      </options>
+    </field>
+    <field name="ddebut" type="date" column="ddebut" nullable="true">
+      <options>
+        <option name="comment">date de debut du bail courant</option>
+      </options>
+    </field>
+    <field name="dfin" type="date" column="dfin" nullable="true">
+      <options>
+        <option name="comment">date de debut du bail courant</option>
+      </options>
+    </field>
+    <field name="dcreeLe" type="datetime" column="dcree_le" nullable="true"/>
+    <field name="creePar" type="string" column="cree_par" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dmodifieLe" type="datetime" column="dmodifie_le" nullable="true"/>
+    <field name="modifiePar" type="string" column="modifie_par" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="montantLoyer" type="decimal" column="montant_loyer" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="comment">montant loyer actuel</option>
+      </options>
+    </field>
+    <field name="payableLe" type="string" column="payable_le" length="5" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">Ordre du jour de paiement : 5 pour le 5 du mois</option>
+      </options>
+    </field>
+    <field name="montantLoyer1" type="decimal" column="montant_loyer1" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="comment">montant premier loyer lors de la signature du bail</option>
+      </options>
+    </field>
+    <field name="montantLoyeravantbail" type="decimal" column="montant_loyerAvantBail" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="comment">montant loyer du locataire précédent</option>
+      </options>
+    </field>
+    <field name="depotGarantie" type="decimal" column="depot_garantie" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="comment">depot de garantie</option>
+      </options>
+    </field>
+    <field name="dirl" type="decimal" column="dIRL" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="comment">Indice de reference du dIRL debut de bail</option>
+      </options>
+    </field>
+    <field name="dtrm" type="integer" column="DTrm" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">trimestre de reference du dIRL debutde bail</option>
+      </options>
+    </field>
+    <field name="dannee" type="integer" column="DAnnee" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">Annee de reference du DIRL</option>
+      </options>
+    </field>
+    <field name="cirl" type="decimal" column="cIRL" precision="10" scale="0" nullable="true">
+      <options>
+        <option name="comment">IRL courant qui a servi a la derniere revalo</option>
+      </options>
+    </field>
+    <field name="ctrm" type="integer" column="cTrm" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">trimestre de reference cIRL</option>
+      </options>
+    </field>
+    <field name="cannee" type="integer" column="CAnnee" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">Annee de reference du cIRL</option>
+      </options>
+    </field>
+    <field name="ddernrevisonloy" type="date" column="ddernRevisonLoy" nullable="true">
+      <options>
+        <option name="comment">Date de derniere révision du loyer</option>
+      </options>
+    </field>
+    <many-to-one field="blBien" target-entity="Bien" fetch="LAZY">
+      <join-columns>
+        <join-column name="bl_id_bien" referenced-column-name="bn_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

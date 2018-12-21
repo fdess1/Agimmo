@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="'App\Entity'\Depense" table="depense">
+    <indexes>
+      <index name="fk_dp_bail" columns="dp_bl_id"/>
+    </indexes>
+    <id name="dpId" type="smallint" column="dp_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="natureDepense" type="string" column="nature_depense" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">Nature de depense (TRAVAUX|HONORAIRE) influant la case dans laquelle imputer en declaration de revenus</option>
+      </options>
+    </field>
+    <field name="descriptif" type="text" column="descriptif" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">descriptif de la dépense</option>
+      </options>
+    </field>
+    <field name="ht" type="decimal" column="HT" precision="5" scale="2" nullable="true">
+      <options>
+        <option name="comment">Montant HTaxe de la depense</option>
+      </options>
+    </field>
+    <field name="tva" type="decimal" column="TVA" precision="5" scale="2" nullable="true">
+      <options>
+        <option name="comment">Montant tva de la depense</option>
+      </options>
+    </field>
+    <field name="ttc" type="decimal" column="TTC" precision="5" scale="2" nullable="true">
+      <options>
+        <option name="comment">Montant TTC de la depense</option>
+      </options>
+    </field>
+    <field name="debutImput" type="date" column="debut_imput" nullable="true">
+      <options>
+        <option name="comment">Date de début de l'imputation</option>
+      </options>
+    </field>
+    <field name="finImput" type="date" column="fin_imput" nullable="true">
+      <options>
+        <option name="comment">Date de fin de l'imputation</option>
+      </options>
+    </field>
+    <many-to-one field="dpBl" target-entity="Bail" fetch="LAZY">
+      <join-columns>
+        <join-column name="dp_bl_id" referenced-column-name="bl_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,46 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ bien.nomUsage }} ({{ bien.bnid }}){% endblock %}
+{% block main %}
+    <main class="container">
+        <h1>{{ bien.nomUsage }}</h1>
+        <ul>
+            <li>identifiant : {{ bien.bnid }}</li>
+            <li>type de bien : {{ bien.bntype }}</li>
+            <li>Nom d'usage : {{ bien.nomUsage }}</li>
+            <li>accès : {{ bien.descrAcces }}</li>
+            <li>adresse : {{ bien.ad1 }}</li>
+            {%  if bien.ad2 != '' %}
+                <li>          {{ bien.ad2 }}</li>
+            {%  endif %}
+            {%  if bien.ad3 != '' %}
+                <li>          {{ bien.ad3 }}</li>
+            {%  endif %}
+            <li>          {{ bien.cp }} {{ bien.ville }}</li>
+            <li>Loyer : {{ bien.prix }} {{ bien.nbloyesParAn}} fois par an</li>
+            <li>surface : {{ bien.surfaceHabitable }}</li>
+            <li>chauffage : {{ bien.typeChauffage }}</li>
+            <li>Accès Internet : {{ bien.hautDebit }}</li>
+        </ul>
+        {#
+        <img src="{{  asset('images/uploaded/project/'~ projet.image) }}" alt="{{ projet.name }}">
+        <p>{{ projet.description }}</p>
+        <a href="/" class="btn btn-outline-primary">Retour à la liste des projets</a>
+        #}
+    </main>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+index:
+    path: /index
+    controller: App\Controller\BienController::home
+fos_user:
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"

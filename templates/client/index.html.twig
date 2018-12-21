@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Client index{% endblock %}
+
+{% block body %}
+    <h1>Client index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ClId</th>
+                <th>ClNom</th>
+                <th>ClPrenom</th>
+                <th>ClRaisonsociale</th>
+                <th>Siren</th>
+                <th>Tel</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.clId }}</td>
+                <td>{{ client.clNom }}</td>
+                <td>{{ client.clPrenom }}</td>
+                <td>{{ client.clRaisonsociale }}</td>
+                <td>{{ client.siren }}</td>
+                <td>{{ client.tel }}</td>
+                <td>{{ client.email }}</td>
+                <td>
+                    <a href="{{ path('client_show', {'clId': client.clId}) }}">show</a>
+                    <a href="{{ path('client_edit', {'clId': client.clId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('client_new') }}">Create new</a>
+{% endblock %}

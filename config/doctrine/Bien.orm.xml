@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="'App\Entity'\Bien" table="bien">
+    <indexes>
+      <index name="fk_proprio" columns="bn_id_proprio"/>
+    </indexes>
+    <id name="bnId" type="smallint" column="bn_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="bnType" type="string" column="bn_type" length="5" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">type de bien</option>
+      </options>
+    </field>
+    <field name="nomUsage" type="string" column="nom_usage" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">Nom d'usage du bien</option>
+      </options>
+    </field>
+    <field name="descrAcces" type="string" column="descr_acces" length="300" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">Descriptif d'acces pour la Poste, les livreurs...</option>
+      </options>
+    </field>
+    <field name="ad1" type="string" column="ad1" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ad2" type="string" column="ad2" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ad3" type="string" column="ad3" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="cp" type="string" column="cp" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">code postal</option>
+      </options>
+    </field>
+    <field name="ville" type="string" column="ville" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codePays" type="string" column="code_pays" length="5" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">FR</option>
+      </options>
+    </field>
+    <field name="prix" type="decimal" column="prix" precision="10" scale="0" nullable="true"/>
+    <field name="surfaceHabitable" type="decimal" column="surface_habitable" precision="10" scale="0" nullable="true"/>
+    <field name="nbloyesParAn" type="integer" column="nbloyes_par_an" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">Nb de loyers par an (12 pour un loyer mensuel)</option>
+      </options>
+    </field>
+    <field name="typeChauffage" type="string" column="type_chauffage" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="hautDebit" type="string" column="haut_debit" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">ADSL|FIBRE|CABLE</option>
+      </options>
+    </field>
+    <many-to-one field="bnProprio" target-entity="Client" fetch="LAZY">
+      <join-columns>
+        <join-column name="bn_id_proprio" referenced-column-name="cl_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

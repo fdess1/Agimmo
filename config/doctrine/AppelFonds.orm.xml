@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="'App\Entity'\AppelFonds" table="appel_fonds">
+    <indexes>
+      <index name="fk_af_bien" columns="af_bn_id"/>
+    </indexes>
+    <id name="afId" type="smallint" column="af_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="afType" type="string" column="af_type" length="5" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">PREVisionnel|REGULarisation</option>
+      </options>
+    </field>
+    <field name="designation" type="string" column="designation" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="afMontant" type="decimal" column="af_montant" precision="10" scale="2" nullable="true">
+      <options>
+        <option name="comment">Montant total</option>
+      </options>
+    </field>
+    <field name="afDontlocataire" type="decimal" column="af_dontlocataire" precision="10" scale="2" nullable="true">
+      <options>
+        <option name="comment">Partie imputable au locataire</option>
+      </options>
+    </field>
+    <field name="periodeb" type="date" column="periodeb" nullable="true">
+      <options>
+        <option name="comment">Date de début periode concernee</option>
+      </options>
+    </field>
+    <field name="periofin" type="date" column="periofin" nullable="true">
+      <options>
+        <option name="comment">Date de fin periode concernee</option>
+      </options>
+    </field>
+    <many-to-one field="afBn" target-entity="Bien" fetch="LAZY">
+      <join-columns>
+        <join-column name="af_bn_id" referenced-column-name="bn_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

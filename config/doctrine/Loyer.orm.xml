@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="'App\Entity'\Loyer" table="loyer">
+    <indexes>
+      <index name="fk_ly_bail" columns="ly_bl_id"/>
+    </indexes>
+    <id name="lyId" type="smallint" column="ly_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="moisRef" type="date" column="mois_ref" nullable="false">
+      <options>
+        <option name="comment">1er du mois/an de référence de la quittance</option>
+      </options>
+    </field>
+    <field name="dateDeb" type="date" column="date_deb" nullable="false">
+      <options>
+        <option name="comment">Date de début du loyer (pour que les loyers trimestriels puissent qd meme entrer)</option>
+      </options>
+    </field>
+    <field name="dateFin" type="date" column="date_fin" nullable="false">
+      <options>
+        <option name="comment">Date de fin du loyer (pour que les loyers trimestriels puissent qd meme entrer)</option>
+      </options>
+    </field>
+    <field name="dateAppel" type="date" column="date_appel" nullable="true">
+      <options>
+        <option name="comment">Appelé le</option>
+      </options>
+    </field>
+    <field name="dateExigibilite" type="date" column="date_exigibilite" nullable="true">
+      <options>
+        <option name="comment">payable le </option>
+      </options>
+    </field>
+    <field name="datePaiement" type="date" column="date_paiement" nullable="true">
+      <options>
+        <option name="comment">Payé le </option>
+      </options>
+    </field>
+    <field name="montantLoyer" type="decimal" column="montant_loyer" precision="5" scale="2" nullable="true">
+      <options>
+        <option name="comment">Montant hors provisions pour charges</option>
+      </options>
+    </field>
+    <field name="provCharges" type="decimal" column="prov_charges" precision="5" scale="2" nullable="true">
+      <options>
+        <option name="comment">montant des provisions pour charge</option>
+      </options>
+    </field>
+    <field name="montantVerse" type="decimal" column="montant_verse" precision="5" scale="2" nullable="true">
+      <options>
+        <option name="comment">(éventuel cumul) Montant verse</option>
+      </options>
+    </field>
+    <field name="resteAPayer" type="decimal" column="Reste_a_payer" precision="5" scale="2" nullable="true">
+      <options>
+        <option name="comment">reste à verser pour acquît du loyer</option>
+      </options>
+    </field>
+    <field name="declarant" type="string" column="declarant" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">utilisateur de connexion ayant déclaré la reception de l'argent</option>
+      </options>
+    </field>
+    <many-to-one field="lyBl" target-entity="Bail" fetch="LAZY">
+      <join-columns>
+        <join-column name="ly_bl_id" referenced-column-name="bl_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="'App\Entity'\Tom" table="tom">
+    <indexes>
+      <index name="fk_tom_bien" columns="tom_bn_id"/>
+      <index name="fk_scan_pieces" columns="tom_sp_id"/>
+    </indexes>
+    <id name="tomId" type="smallint" column="tom_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="description" type="string" column="description" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="annee" type="smallint" column="annee" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment"> annee de la taxe annuelle</option>
+      </options>
+    </field>
+    <field name="montant" type="decimal" column="montant" precision="10" scale="2" nullable="true">
+      <options>
+        <option name="comment">montant de l'impot payé par le proprio a rembourser par le locataire</option>
+      </options>
+    </field>
+    <many-to-one field="tomSp" target-entity="ScanPieces" fetch="LAZY">
+      <join-columns>
+        <join-column name="tom_sp_id" referenced-column-name="sp_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="tomBn" target-entity="Bien" fetch="LAZY">
+      <join-columns>
+        <join-column name="tom_bn_id" referenced-column-name="bn_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
