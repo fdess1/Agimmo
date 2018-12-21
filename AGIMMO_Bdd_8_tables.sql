@@ -27,7 +27,7 @@ create database agimmo;
 
 
 CREATE USER IF NOT EXISTS ut_agimmo IDENTIFIED by 'agimmo';
-GRANT ALL PRIVILEGES ON agimmo.* TO ut_agimmo@localhost WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON agimmo.* TO ut_agimmo WITH GRANT OPTION;
 
 use agimmo;
 
@@ -90,6 +90,7 @@ CREATE TABLE bien (
                     bn_id_proprio smallint(5) UNSIGNED DEFAULT NULL,
                     type_chauffage  varchar(20),
                     haut_debit  varchar (20) comment 'ADSL|FIBRE|CABLE',
+                    photo varchar (50) comment 'Nom du fichier de la photo si existante',
                     CONSTRAINT fk_proprio FOREIGN KEY (bn_id_proprio) REFERENCES client (cl_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
   comment = "table des biens à louer (appartement, maison)";
@@ -126,14 +127,14 @@ CREATE TABLE bail (
 
 -- -------------------------------------------------------
 CREATE TABLE locs_bail (
-                           lc_bl_id smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'le bail de reference' ,
-                           lc_cl_id smallint(5) UNSIGNED NOT NULL COMMENT 'le client (co)locataire',
-                           CONSTRAINT fk_cl_bail FOREIGN KEY (lc_cl_id) REFERENCES client (cl_id),
-                           CONSTRAINT fk_lc_bail FOREIGN KEY (lc_bl_id) REFERENCES bail (bl_id)
+   lc_id smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   lc_bl_id smallint(5) UNSIGNED NOT NULL COMMENT 'le bail de reference' ,
+   lc_cl_id smallint(5) UNSIGNED NOT NULL COMMENT 'le client (co)locataire',
+   CONSTRAINT fk_cl_bail FOREIGN KEY (lc_cl_id) REFERENCES client (cl_id),
+   CONSTRAINT fk_lc_bail FOREIGN KEY (lc_bl_id) REFERENCES bail (bl_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8  comment 'table du/des colocs d un bail ';
+
 -- Table des loyers (chaque loyer payé valide l'historique des paiements jusqu'à mois/an de référence
-
-
 create table loyer(
   ly_id smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ly_bl_id  smallint(5) UNSIGNED NOT NULL comment 'bail de reference : fk -> bail',

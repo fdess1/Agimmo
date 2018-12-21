@@ -29,14 +29,14 @@ insert into adresse (ad_id, a_attention_de, ad1, ad2, ad3, cp, ville, code_pays,
 (11, 'Nathalie PIOT', '1 impasse Jeanne FAUSSE', null, null, '91570', 'Bièvres', 'FR', null, 9),
 (12, null, '48 rue de Paris', null, null, '91570', 'Bièvres', 'FR', '0169412860', 10)
 ;
-insert into bien (bn_id, bn_type, nom_usage, descr_acces, ad1, ad2, ad3, cp, ville, code_pays, prix, surface_habitable, nbloyes_par_an, bn_id_proprio, type_chauffage, haut_debit)
+insert into bien (bn_id, bn_type, nom_usage, descr_acces, ad1, ad2, ad3, cp, ville, code_pays, prix, surface_habitable, nbloyes_par_an, bn_id_proprio, type_chauffage, haut_debit, photo)
 values
-( 1, 'F2', 'Petit F2 Stalingrad', '6eme étage face escalier','244 Bd de la Villette', null, null, '75019', 'Paris','FR',640,23,12,4, 'ELEC','ADSL'),
-( 2, 'F2', 'Grand F2 Stalingrad', '6eme étage droite escalier','244 Bd de la Villette', null, null, '75019', 'Paris','FR',820,35,12,4, 'ELEC','ADSL'),
-( 3, 'F2', 'Avron', 'Bat B, Rdc 4eme escalier à gauche',"58, rue d'Avron", null, null, '75020', 'Paris','FR',650,26,12,3, 'ELEC','FIBRE'),
-( 4, 'F5', 'Martyrs', 'Bat 1, 2eme étage porte gauche',"52, rue de la tour d'Auvergne", null, null, '75009', 'Paris','FR',1450,95,12,2, 'GAZ','CABLE'),
-( 5, 'F3', 'dépendance', 'au fond du jardin','15 rue du Sud', null, null, '92160', 'Antony','FR',400,52,12,3, 'ELEC','NEANT'),
-( 10, 'F4', 'maison rouge', 'au fond du jardin à gauche','19B rue Jean Fourcade', null, null, '64122', 'Urrugne','FR',1100,84,12,10, 'ELEC','ADSL')
+( 1, 'F2', 'Petit F2 Stalingrad', '6eme étage face escalier','244 Bd de la Villette', null, null, '75019', 'Paris','FR',640,23,12,4, 'ELEC','ADSL', 'PtF2Stlgrd.jpg'),
+( 2, 'F2', 'Grand F2 Stalingrad', '6eme étage droite escalier','244 Bd de la Villette', null, null, '75019', 'Paris','FR',820,35,12,4, 'ELEC','ADSL','GdF2Stlgrd.jpg'),
+( 3, 'F2', 'Avron', 'Bat B, Rdc 4eme escalier à gauche',"58, rue d'Avron", null, null, '75020', 'Paris','FR',650,26,12,3, 'ELEC','FIBRE','Avron.JPG'),
+( 4, 'F5', 'Martyrs', 'Bat 1, 2eme étage porte gauche',"52, rue de la tour d'Auvergne", null, null, '75009', 'Paris','FR',1450,95,12,2, 'GAZ','CABLE','Martyrs.jpg'),
+( 5, 'F3', 'dépendance', 'au fond du jardin','15 rue du Sud', null, null, '92160', 'Antony','FR',400,52,12,3, 'ELEC','NEANT','Dpdce.JPG'),
+( 10, 'F4', 'maison rouge', 'au fond du jardin à gauche','19B rue Jean Fourcade', null, null, '64122', 'Urrugne','FR',1100,84,12,10, 'ELEC','ADSL','MaisonRouge.jpg')
 ;
 insert into bail (bl_id, bl_meuble, bl_type, bl_id_bien,ddebut,dfin, dsigne_le, dureeM, payable_le, DTrm, DAnnee, cTrm, CAnnee) values
 (1, 0, '3ans', 3, '2002-06-01','2018-05-31', '2002-04-01',36, 5, 1, 2002, null, null),
